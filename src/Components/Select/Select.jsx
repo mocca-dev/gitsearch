@@ -1,14 +1,17 @@
 import React from 'react';
 
+import './Select.css';
+
 const Select = ({ placeholderText, setSelectedOption, selectedOption }) => {
   return (
-    <div>
+    <div className="select-container">
+      <label htmlFor="criteria">Search by</label>
       <select
         name="criteria"
         id="criteria"
         value={selectedOption}
         onChange={(e) => setSelectedOption(e.target.value)}
-        defaultValue=""
+        defaultValue="name"
       >
         <option value="" disabled hidden>
           {placeholderText}
