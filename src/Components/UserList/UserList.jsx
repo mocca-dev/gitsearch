@@ -1,4 +1,5 @@
 import React from 'react';
+import UserItem from './UserItem';
 import './UserList.css';
 
 const UserList = ({ error, loading, data }) => {
@@ -9,12 +10,14 @@ const UserList = ({ error, loading, data }) => {
         <p>Loading...</p>
       ) : data ? (
         <>
-          <p className="result-counter">{data.search.edges.length} results</p>
+          <p className="result-counter">
+            Showing <strong>{data.search.edges.length}</strong> results
+          </p>
           <ul>
             {data?.search.edges.map(
               (node, i) =>
                 node.node.login && (
-                  <li key={node.node.login + i}>{node.node.login}</li>
+                  <UserItem key={node.node.login + i} user={node.node} />
                 )
             )}
           </ul>

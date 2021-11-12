@@ -5,15 +5,14 @@
 
 .user-list-container ul {
   padding: 0;
-}
-
-.user-list-container ul li {
-  list-style-type: none;
+  overflow: scroll;
+  height: 430px;
 }
 
 .user-list-container .result-counter {
   text-align: left;
+  margin-left: 5px;
   margin-top: 5px;
   opacity: 0.5;
-  font-size: 0.9rem;
+  font-size: 0.75rem;
 }

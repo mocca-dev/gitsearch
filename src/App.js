@@ -13,9 +13,10 @@ const SEARCH = gql`
       edges {
         node {
           ... on User {
-            login
-            email
             name
+            avatarUrl
+            email
+            login
           }
         }
       }
@@ -24,7 +25,7 @@ const SEARCH = gql`
 `;
 
 function App() {
-  const [selectedOption, setSelectedOption] = useState('');
+  const [selectedOption, setSelectedOption] = useState('name');
   const [searchText, setSearchText] = useState('');
   const [search, { loading, error, data }] = useLazyQuery(SEARCH);
 
@@ -33,7 +34,7 @@ function App() {
     search({
       variables: {
         query: searchText,
-        first: 10,
+        first: 5,
         login: '',
       },
     });

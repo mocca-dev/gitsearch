@@ -1,0 +1,32 @@
+.user-card-container {
+  list-style-type: none;
+  width: 100%;
+  border: var(--grey-border);
+  border-radius: var(--border-5-radius);
+  padding: 15px 20px;
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: space-between;
+  text-align: left;
+}
+
+.user-card-container .left-column {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-right: 10px;
+}
+
+.user-card-container .right-column {
+  display: flex;
+}
+
+.user-card-container .right-column img {
+  border-radius: var(--border-5-radius);
+  height: 54px;
+}
+
+.user-card-container .user-login,
+.user-card-container .user-email {
+  font-size: 0.8rem;
+}
