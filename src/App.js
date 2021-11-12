@@ -1,10 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { gql, useLazyQuery } from '@apollo/client';
 
 import './App.css';
 import Input from './Components/Input/Input';
 import Select from './Components/Select/Select';
 import SubmitButton from './Components/SubmitButton/SubmitButton';
+import UserList from './Components/UserList/UserList';
 
 const SEARCH = gql`
   query SearchUsers($query: String!, $first: Int!) {
@@ -36,7 +37,6 @@ function App() {
         login: '',
       },
     });
-    console.log(data, searchText);
   };
 
   return (
@@ -44,35 +44,26 @@ function App() {
       <header>
         <h2>Github user search</h2>
       </header>
-      <form onSubmit={submitHandler}>
+      <form onSubmit={submitHandler} className="search-form">
         <Select
           placeholderText="Search by"
           setSelectedOption={setSelectedOption}
           {...selectedOption}
         />
-        <Input
-          placeholderText={
-            selectedOption ? 'Search by ' + selectedOption : 'Select a criteria'
-          }
-          setSearchText={setSearchText}
-          {...searchText}
-        />
-        <SubmitButton />
+        <div className="search-container">
+          <Input
+            placeholderText={
+              selectedOption
+                ? 'Search by ' + selectedOption
+                : 'Select a criteria'
+            }
+            setSearchText={setSearchText}
+            {...searchText}
+          />
+          <SubmitButton />
+        </div>
       </form>
-      {loading ? (
-        <p>Loading...</p>
-      ) : data ? (
-        <ul>
-          {data?.search.edges.map(
-            (node, i) =>
-              node.node.login && (
-                <li key={node.node.login + i}>{node.node.login}</li>
-              )
-          )}
-        </ul>
-      ) : (
-        <p>There is no data returned.</p>
-      )}
+      <UserList data={data} loading={loading} error={error} />
     </div>
   );
 }

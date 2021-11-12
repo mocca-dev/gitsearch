@@ -1,0 +1,19 @@
+.user-list-container .no-result {
+  opacity: 0.3;
+  margin-top: 50px;
+}
+
+.user-list-container ul {
+  padding: 0;
+}
+
+.user-list-container ul li {
+  list-style-type: none;
+}
+
+.user-list-container .result-counter {
+  text-align: left;
+  margin-top: 5px;
+  opacity: 0.5;
+  font-size: 0.9rem;
+}
