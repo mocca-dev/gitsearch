@@ -1,0 +1,9 @@
+.profile-container img {
+  width: 50%;
+  border-radius: 50%;
+  margin-bottom: 30px;
+}
+
+.profile-subheader {
+  display: flex;
+}

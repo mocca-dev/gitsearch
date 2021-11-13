@@ -1,4 +1,6 @@
 import React from 'react';
+
+import puff from './puff.svg';
 import UserItem from './UserItem';
 import './UserList.css';
 
@@ -7,7 +9,7 @@ const UserList = ({ error, loading, data }) => {
     <div className="user-list-container">
       {error && <p>Error in search query</p>}
       {loading ? (
-        <p>Loading...</p>
+        <img className="loader-svg" src={puff} height="50px" alt="loader" />
       ) : data ? (
         <>
           <p className="result-counter">
@@ -23,7 +25,7 @@ const UserList = ({ error, loading, data }) => {
           </ul>
         </>
       ) : (
-        <p className="no-result">There are no results</p>
+        <p className="no-result">There are no results to show</p>
       )}
     </div>
   );
