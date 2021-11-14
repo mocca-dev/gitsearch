@@ -21,18 +21,6 @@
   font-weight: 600;
 }
 
-input[type='text'] {
-  width: calc(100% - 55px);
-  height: 45px;
-  font-size: 1rem;
-  color: white;
-  background-color: #0e1117;
-  border: var(--grey-border);
-  padding: 8px 16px;
-  border-radius: var(--border-5-radius);
-  margin-right: 10px;
-}
-
 label {
   margin-right: 10px;
 }

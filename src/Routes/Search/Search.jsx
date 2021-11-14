@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 
 import { gql, useLazyQuery } from '@apollo/client';
+import { useForm } from 'react-hook-form';
 
 import Input from './../../Components/Input/Input';
 import Select from './../../Components/Select/Select';
 import SubmitButton from './../../Components/SubmitButton/SubmitButton';
 import UserList from './../../Components/UserList/UserList';
+import './Search.css';
 
 const SEARCH = gql`
   query SearchUsers($query: String!, $first: Int!) {
@@ -47,11 +49,14 @@ const SEARCH = gql`
 
 const Search = () => {
   const [selectedOption, setSelectedOption] = useState('name');
-  const [searchText, setSearchText] = useState('');
   const [search, { loading, error, data }] = useLazyQuery(SEARCH);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
-  const submitHandler = (e) => {
-    e.preventDefault();
+  const onSubmit = ({ searchText }) => {
     search({
       variables: {
         query: searchText,
@@ -60,9 +65,10 @@ const Search = () => {
       },
     });
   };
+
   return (
     <>
-      <form onSubmit={submitHandler} className="search-form">
+      <form onSubmit={handleSubmit(onSubmit)} className="search-form">
         <Select
           placeholderText="Search by"
           setSelectedOption={setSelectedOption}
@@ -75,8 +81,8 @@ const Search = () => {
                 ? 'Search by ' + selectedOption
                 : 'Select a criteria'
             }
-            setSearchText={setSearchText}
-            {...searchText}
+            register={register}
+            errors={errors.searchText}
           />
           <SubmitButton />
         </div>

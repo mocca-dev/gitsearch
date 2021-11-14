@@ -36,3 +36,11 @@ a {
   color: inherit;
   text-decoration: none;
 }
+
+.error-msg {
+  display: block;
+  margin-top: 8px;
+  font-size: 0.8rem;
+  color: #ff3232;
+  text-align: left;
+}
