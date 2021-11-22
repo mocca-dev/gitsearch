@@ -3,13 +3,17 @@
   margin-top: 50px;
 }
 
-.user-list-container ul {
+.user-list-container {
   padding: 0;
   overflow: scroll;
   height: 430px;
 }
 
-.user-list-container .result-counter {
+.user-list-container ul {
+  padding-left: 0;
+}
+
+.result-counter {
   text-align: left;
   margin-left: 5px;
   margin-top: 5px;
@@ -19,4 +23,8 @@
 
 .loader-svg {
   margin-top: 30px;
+}
+
+.loader-more-svg {
+  margin-top: 10px;
 }

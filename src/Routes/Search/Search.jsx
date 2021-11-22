@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { gql, useLazyQuery } from '@apollo/client';
 import { useForm } from 'react-hook-form';
@@ -13,6 +13,45 @@ const SEARCH = gql`
   query SearchUsers($query: String!, $first: Int!) {
     search(query: $query, type: USER, first: $first) {
       edges {
+        cursor
+        node {
+          ... on User {
+            name
+            avatarUrl
+            email
+            login
+            repositories(first: 100) {
+              edges {
+                node {
+                  id
+                }
+              }
+            }
+            followers(first: 100) {
+              edges {
+                node {
+                  id
+                }
+              }
+            }
+            following(first: 100) {
+              edges {
+                node {
+                  id
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+const SEARCH_MORE = gql`
+  query SearchMore($query: String!, $first: Int!, $after: String!) {
+    search(query: $query, type: USER, first: $first, after: $after) {
+      edges {
+        cursor
         node {
           ... on User {
             name
@@ -49,7 +88,12 @@ const SEARCH = gql`
 
 const Search = () => {
   const [selectedOption, setSelectedOption] = useState('name');
+  const [searchValue, setSearchValue] = useState('');
+  const [nextCursor, setNextCursor] = useState('');
+  const [list, setList] = useState({ search: { edges: [] } });
   const [search, { loading, error, data }] = useLazyQuery(SEARCH);
+  const [loadMore, { loading: loadingMore, data: dataMore }] =
+    useLazyQuery(SEARCH_MORE);
   const {
     register,
     handleSubmit,
@@ -57,14 +101,45 @@ const Search = () => {
   } = useForm();
 
   const onSubmit = ({ searchText }) => {
+    setSearchValue(searchText);
     search({
       variables: {
         query: searchText,
         first: 5,
-        login: '',
       },
     });
   };
+
+  const onLoadMore = () => {
+    loadMore({
+      variables: {
+        query: searchValue,
+        first: 5,
+        after: nextCursor,
+      },
+    });
+  };
+
+  useEffect(() => {
+    if (data && data.search.edges.length) {
+      setList(data);
+      setNextCursor(data.search.edges[data.search.edges.length - 1].cursor);
+    }
+  }, [data]);
+
+  useEffect(() => {
+    console.log('datamore', dataMore);
+    if (dataMore && dataMore.search.edges.length) {
+      setList({
+        ...list,
+        search: { edges: [...list.search.edges, ...dataMore.search.edges] },
+      });
+      setNextCursor(
+        dataMore.search.edges[dataMore.search.edges.length - 1].cursor
+      );
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dataMore]);
 
   return (
     <>
@@ -87,7 +162,13 @@ const Search = () => {
           <SubmitButton />
         </div>
       </form>
-      <UserList data={data} loading={loading} error={error} />
+      <UserList
+        data={list}
+        loading={loading}
+        loadingMore={loadingMore}
+        error={error}
+        onLoadMore={() => onLoadMore()}
+      />
     </>
   );
 };
