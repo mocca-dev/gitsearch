@@ -10,14 +10,14 @@ const Select = ({ placeholderText, setSelectedOption, selectedOption }) => {
         id="criteria"
         value={selectedOption}
         onChange={(e) => setSelectedOption(e.target.value)}
-        defaultValue="name"
+        defaultValue="Name"
       >
         <option value="" disabled hidden>
           {placeholderText}
         </option>
-        <option value="name">{placeholderText} Name</option>
-        <option value="login">{placeholderText} Login</option>
-        <option value="email">{placeholderText} Email</option>
+        <option value="Name">{placeholderText} Name</option>
+        <option value="Login">{placeholderText} Login</option>
+        <option value="Email">{placeholderText} Email</option>
       </select>
     </div>
   );
