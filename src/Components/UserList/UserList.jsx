@@ -36,7 +36,7 @@ const UserList = ({ error, loading, data, onLoadMore, loadingMore }) => {
 
   return (
     <>
-      {data && (
+      {!!data.search.edges.length && (
         <p className="result-counter">
           Showing <strong>{data.search.edges.length}</strong> results
         </p>
@@ -61,13 +61,18 @@ const UserList = ({ error, loading, data, onLoadMore, loadingMore }) => {
         )}
         {loadingMore && (
           <img
-            className="loader-mmore-svg"
+            className="loader-more-svg"
             src={puff}
             height="50px"
             alt="loader"
           />
         )}
-        <div ref={loader}></div>
+        <div className="mobile-load-more" ref={loader}></div>
+        {!!data.search.edges.length && (
+          <button className="load-more-btn" onClick={() => onLoadMore()}>
+            Load more
+          </button>
+        )}
       </div>
     </>
   );

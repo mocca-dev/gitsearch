@@ -25,6 +25,16 @@ label {
   margin-right: 10px;
 }
 
+button {
+  padding: 7px 15px;
+  border: var(--grey-border);
+  border-radius: var(--border-5-radius);
+  color: white;
+  background-color: #21262c;
+  height: 32px;
+  font-weight: bold;
+}
+
 @media (min-width: 1024px) {
   .App {
     max-width: 1024px;

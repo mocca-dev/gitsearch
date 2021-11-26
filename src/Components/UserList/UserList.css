@@ -6,7 +6,7 @@
 .user-list-container {
   padding: 0;
   overflow: scroll;
-  height: calc(100% - 150px);
+  height: calc(100% - 90px);
 }
 
 .user-list-container ul {
@@ -24,9 +24,29 @@
 }
 
 .loader-svg {
-  margin-top: 30px;
+  display: block;
+  margin: 30px auto;
 }
 
 .loader-more-svg {
-  margin-top: 10px;
+  display: block;
+  margin: 10px auto;
+}
+
+.mobile-load-more {
+  display: none;
+}
+
+@media (max-width: 500px) {
+  .user-list-container {
+    height: calc(100% - 150px);
+  }
+
+  .mobile-load-more {
+    display: block;
+  }
+
+  .load-more-btn {
+    display: none;
+  }
 }
