@@ -4,7 +4,7 @@ import './UserItem.css';
 
 const UserItem = ({ user }) => {
   return (
-    <Link to="/profile" state={{ user }}>
+    <Link className="user-item-a" to="/profile" state={{ user }}>
       <li className="user-card-container">
         <span className="left-column">
           <span className="user-name">

@@ -6,11 +6,13 @@
 .user-list-container {
   padding: 0;
   overflow: scroll;
-  height: 430px;
+  height: calc(100% - 150px);
 }
 
 .user-list-container ul {
   padding-left: 0;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .result-counter {

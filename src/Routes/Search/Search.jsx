@@ -128,7 +128,6 @@ const Search = () => {
   }, [data]);
 
   useEffect(() => {
-    console.log('datamore', dataMore);
     if (dataMore && dataMore.search.edges.length) {
       setList({
         ...list,
@@ -144,23 +143,23 @@ const Search = () => {
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)} className="search-form">
+        <div className="search-container">
+          <span className="input-btn">
+            <Input
+              placeholderText={
+                selectedOption ? selectedOption + '...' : 'Select a criteria'
+              }
+              register={register}
+              errors={errors.searchText}
+            />
+            <SubmitButton />
+          </span>
+        </div>
         <Select
           placeholderText="Search by"
           setSelectedOption={setSelectedOption}
           {...selectedOption}
         />
-        <div className="search-container">
-          <Input
-            placeholderText={
-              selectedOption
-                ? 'Search by ' + selectedOption
-                : 'Select a criteria'
-            }
-            register={register}
-            errors={errors.searchText}
-          />
-          <SubmitButton />
-        </div>
       </form>
       <UserList
         data={list}

@@ -5,7 +5,6 @@ import './Select.css';
 const Select = ({ placeholderText, setSelectedOption, selectedOption }) => {
   return (
     <div className="select-container">
-      <label htmlFor="criteria">Search by</label>
       <select
         name="criteria"
         id="criteria"
@@ -16,9 +15,9 @@ const Select = ({ placeholderText, setSelectedOption, selectedOption }) => {
         <option value="" disabled hidden>
           {placeholderText}
         </option>
-        <option value="name">Name</option>
-        <option value="login">Login</option>
-        <option value="email">Email</option>
+        <option value="name">{placeholderText} Name</option>
+        <option value="login">{placeholderText} Login</option>
+        <option value="email">{placeholderText} Email</option>
       </select>
     </div>
   );

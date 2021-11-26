@@ -1,6 +1,5 @@
 .user-card-container {
   list-style-type: none;
-  width: 100%;
   border: var(--grey-border);
   border-radius: var(--border-5-radius);
   padding: 15px 20px;
@@ -8,6 +7,9 @@
   display: flex;
   justify-content: space-between;
   text-align: left;
+  min-width: 200px;
+  max-width: 400px;
+  margin-right: 20px;
 }
 
 .user-card-container .left-column {
@@ -29,4 +31,16 @@
 .user-card-container .user-login,
 .user-card-container .user-email {
   font-size: 0.8rem;
+}
+
+@media (max-width: 500px) {
+  .user-item-a {
+    width: 100%;
+  }
+
+  .user-card-container {
+    width: 100%;
+    min-width: none;
+    max-width: none;
+  }
 }

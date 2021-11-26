@@ -1,4 +1,26 @@
 .search-container {
+  margin-right: 20px;
+  width: 350px;
+}
+
+.input-btn {
   display: flex;
   justify-content: space-between;
+}
+
+.search-form {
+  display: flex;
+}
+
+@media (max-width: 500px) {
+  .search-container {
+    width: 100%;
+    max-width: none;
+    margin-bottom: 15px;
+    margin-right: 0;
+  }
+
+  .search-form {
+    flex-direction: column;
+  }
 }

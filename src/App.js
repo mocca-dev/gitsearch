@@ -9,7 +9,9 @@ function App() {
   return (
     <div className="App">
       <header>
-        <h2>Github user search</h2>
+        <div>
+          <h2>Github user search</h2>
+        </div>
       </header>
       <BrowserRouter>
         <Routes>

@@ -1,13 +1,13 @@
 .select-container {
-  display: flex;
-  align-items: center;
   margin-bottom: 10px;
   height: 45px;
+  max-width: 300px;
 }
 
 .select-container select {
   font-size: 1rem;
   width: calc(100% - 83px);
+  min-width: 200px;
   height: 45px;
   color: white;
   border: var(--grey-border);
@@ -27,4 +27,12 @@
     calc(100% - 10px) calc(1em + 6px), 100% 0;
   background-size: 3px 5px, 5px 4px, 2.5em 2.5em;
   background-repeat: no-repeat;
+}
+
+@media (max-width: 500px) {
+  .select-container,
+  .select-container select {
+    max-width: none;
+    width: 100%;
+  }
 }

@@ -24,3 +24,20 @@
 label {
   margin-right: 10px;
 }
+
+@media (min-width: 1024px) {
+  .App {
+    max-width: 1024px;
+    margin: auto;
+    margin-top: 80px;
+  }
+
+  .App header div {
+    margin: 0 auto;
+    width: 1024px;
+  }
+
+  .App header div h2 {
+    margin: 0;
+  }
+}
